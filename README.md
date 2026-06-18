@@ -53,7 +53,7 @@ Average Speculative Decoding Tokens per second: 199.25 tokens/second
 
 ## Notes
 
-This is not full token-level speculative decoding yet. The current `speculative_decoding()` path generates draft text with the small model and reports a placeholder verification score of `0.0`. The latency comparison is still useful for checking MLX model loading and generation speed, but acceptance/rejection against the big model needs to be implemented separately.
+The current `speculative_decoding()` path now uses `mlx_lm.stream_generate(..., draft_model=...)`, so acceptance/rejection is handled by MLX-LM's built-in speculative decoding loop. The script reports accepted/rejected token counts, acceptance rate, and the average selected-token log-likelihood as a lightweight verification signal.
 
 ## Files
 
